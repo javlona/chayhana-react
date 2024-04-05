@@ -1,9 +1,16 @@
 import { useLoaderData } from "react-router-dom";
+import MenuItem from "./MenuItem";
 
 function Menu() {
   const menu = useLoaderData();
-  console.log(menu);
-  return <div>Menu</div>;
+
+  return (
+    <ul>
+      {menu.map((item) => (
+        <MenuItem item={item} key={item.id} />
+      ))}
+    </ul>
+  );
 }
 
 export async function loader() {
