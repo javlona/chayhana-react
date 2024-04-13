@@ -4,11 +4,13 @@ function Error() {
   const navigate = useNavigate();
   const error = useRouteError();
 
+  console.log(error);
+
   return (
     <div>
       <h2>Something went wrong</h2>
       <p>Error status: {error.status}</p>
-      <p>Error message: {error.error.message}</p>
+      <p>Error message: {error.message}</p>
       <button onClick={() => navigate(-1)}>&#8592;Go back </button>
     </div>
   );

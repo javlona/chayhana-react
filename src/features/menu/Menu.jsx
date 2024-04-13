@@ -14,9 +14,7 @@ function Menu() {
 }
 
 export async function loader() {
-  const res = await fetch(
-    "https://react-fast-pizza-api.onrender.com/api/menuss"
-  );
+  const res = await fetch("https://react-fast-pizza-api.onrender.com/api/menu");
 
   if (!res.ok) throw Error("Could not fetch menu");
   const { data } = await res.json();
