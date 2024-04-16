@@ -39,6 +39,7 @@ function App() {
       ],
     },
   ]);
+  console.log("🚀 ~ App ~ router:", router);
   return (
     <>
       <RouterProvider router={router} />
