@@ -1,4 +1,5 @@
-import { Form } from "react-router-dom";
+import { Form, redirect } from "react-router-dom";
+import { createOrder } from "../../services/apiFetch";
 
 function CreateOrder() {
   return (
@@ -13,6 +14,7 @@ function CreateOrder() {
           <label htmlFor="phone">Phone number</label>
           <input type="tel" id="phone" name="phone" required />
           <div>
+            <input type="hidden" name="cart" value={JSON.stringify([])} />
             <button>Order</button>
           </div>
         </div>
@@ -24,15 +26,17 @@ function CreateOrder() {
 export async function action({ request }) {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
-  console.log(data);
 
+  console.log(data);
   const order = {
     ...data,
     cart: JSON.parse(data.cart),
   };
 
-  console.log("🚀 ~ action ~ order:", order);
-  return null;
+  const newOrder = await createOrder(order);
+  console.log(newOrder);
+  return redirect(`/order/${newOrder.id}`);
+  // return redirect(`/order/${newOrder.id}`);
 }
 
 export default CreateOrder;
