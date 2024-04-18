@@ -1,5 +1,6 @@
 import { useLoaderData } from "react-router-dom";
 import MenuItem from "./MenuItem";
+import { getMenu } from "../../services/apiFetch";
 
 function Menu() {
   const menu = useLoaderData();
@@ -14,11 +15,8 @@ function Menu() {
 }
 
 export async function loader() {
-  const res = await fetch("https://react-fast-pizza-api.onrender.com/api/menu");
-
-  if (!res.ok) throw Error("Could not fetch menu");
-  const { data } = await res.json();
-  return data;
+  const menu = await getMenu();
+  return menu;
 }
 
 export default Menu;
