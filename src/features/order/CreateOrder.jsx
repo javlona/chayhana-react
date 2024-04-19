@@ -1,4 +1,4 @@
-import { Form, redirect } from "react-router-dom";
+import { Form, redirect, useActionData, useNavigation } from "react-router-dom";
 import { createOrder } from "../../services/apiFetch";
 
 const dummyCart = [
@@ -25,7 +25,18 @@ const dummyCart = [
   },
 ];
 
+const isValidPhone = (phone) => {
+  return /^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/.test(
+    phone
+  );
+};
+
 function CreateOrder() {
+  const navigation = useNavigation();
+  const isSubmitting = navigation.state === "submitting";
+
+  const formErrors = useActionData();
+
   const cart = JSON.stringify(dummyCart);
 
   return (
@@ -39,9 +50,12 @@ function CreateOrder() {
 
           <label htmlFor="phone">Phone number</label>
           <input type="tel" id="phone" name="phone" required />
+          {formErrors?.phone && <p>{formErrors.phone}</p>}
           <div>
             <input type="hidden" name="cart" value={cart} />
-            <button>Order</button>
+            <button disabled={isSubmitting}>
+              {isSubmitting ? "Ordering..." : "Order"}
+            </button>
           </div>
         </div>
       </Form>
@@ -53,14 +67,23 @@ export async function action({ request }) {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
 
-  console.log(data);
   const order = {
     ...data,
     cart: JSON.parse(data.cart),
   };
 
+  const errors = {};
+  if (!isValidPhone(order.phone)) {
+    errors.phone = "Phone number is not valid";
+  }
+
+  if (Object.keys(errors).length) {
+    return errors;
+  }
+
   const newOrder = await createOrder(order);
   console.log(newOrder);
+
   return redirect(`/order/${newOrder.id}`);
   // return redirect(`/order/${newOrder.id}`);
 }
