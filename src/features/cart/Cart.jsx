@@ -1,19 +1,16 @@
 import { Link } from "react-router-dom";
+import LinkButton from "../../ui/LinkButton";
+import Button from "../../ui/Button";
 
 function Cart() {
   return (
     <div>
-      <Link
-        to="/menu"
-        className="text-sm text-blue-500 hover:text-blue-700 transition hover"
-      >
-        &#8592; Back to menu
-      </Link>
+      <LinkButton to="/menu">&#8592; Back to menu</LinkButton>
 
       <h2>Your cart</h2>
 
       <div>
-        <Link to="/order/new">Order food</Link>
+        <Button to="/order/new">Order food</Button>
         <button>Clear cart</button>
       </div>
     </div>

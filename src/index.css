@@ -6,24 +6,23 @@
   .input {
     @apply w-full rounded-full border border-stone-200 px-4 py-2 text-sm transition-all duration-300 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50 md:px-5 md:py-3;
   }
-}
-
-.spinner {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  display: inline-block;
-  border-top: 3px solid #000000;
-  border-right: 3px solid transparent;
-  box-sizing: border-box;
-  animation: rotation 1s linear infinite;
-}
-
-@keyframes rotation {
-  0% {
-    transform: rotate(0deg);
+  .spinner {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: inline-block;
+    border-top: 3px solid theme("colors.main1");
+    border-right: 3px solid transparent;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
   }
-  100% {
-    transform: rotate(360deg);
+
+  @keyframes rotation {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
   }
 }
