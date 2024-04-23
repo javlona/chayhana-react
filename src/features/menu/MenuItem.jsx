@@ -2,8 +2,8 @@ function MenuItem({ item }) {
   const { id, name, unitPrice, ingredients, soldOut, imageUrl } = item;
 
   return (
-    <li>
-      <img src={imageUrl} alt={name} />
+    <li className="flex gap-4">
+      <img className="h-24" src={imageUrl} alt={name} />
       <div>
         <p>{name}</p>
         <p>{ingredients.join(", ")}</p>
