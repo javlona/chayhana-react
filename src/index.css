@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .input {
+    @apply w-full rounded-full border border-stone-200 px-4 py-2 text-sm transition-all duration-300 focus:outline-none focus:ring focus:ring-orange-300 focus:ring-opacity-50 md:px-6 md:py-3;
+  }
+}
+
 .spinner {
   width: 48px;
   height: 48px;

@@ -1,5 +1,6 @@
 import { Form, redirect, useActionData, useNavigation } from "react-router-dom";
 import { createOrder } from "../../services/apiFetch";
+import Button from "../../ui/Button";
 
 const dummyCart = [
   {
@@ -27,7 +28,7 @@ const dummyCart = [
 
 const isValidPhone = (phone) => {
   return /^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/.test(
-    phone
+    phone,
   );
 };
 
@@ -40,22 +41,34 @@ function CreateOrder() {
   const cart = JSON.stringify(dummyCart);
 
   return (
-    <div>
+    <div className="my-10">
       <h2>Are you ready to order?</h2>
 
       <Form method="post">
-        <div>
+        <div className="flex flex-col">
           <label htmlFor="name">First name</label>
-          <input type="text" id="name" name="customer" required />
+          <input
+            className="input"
+            type="text"
+            id="name"
+            name="customer"
+            required
+          />
 
           <label htmlFor="phone">Phone number</label>
-          <input type="tel" id="phone" name="phone" required />
+          <input
+            className="input"
+            type="tel"
+            id="phone"
+            name="phone"
+            required
+          />
           {formErrors?.phone && <p>{formErrors.phone}</p>}
           <div>
             <input type="hidden" name="cart" value={cart} />
-            <button disabled={isSubmitting}>
-              {isSubmitting ? "Ordering..." : "Order"}
-            </button>
+            <Button disabled={isSubmitting}>
+              {isSubmitting ? "Ordering..." : "Order now"}
+            </Button>
           </div>
         </div>
       </Form>
