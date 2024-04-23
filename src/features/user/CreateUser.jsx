@@ -18,14 +18,11 @@ function CreateUser() {
         placeholder="Your full name"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
-        className="w-72"
+        className="input mb-4 w-72"
       />
-
-      {username !== "" && (
-        <div>
-          <Button>Start your order</Button>
-        </div>
-      )}
+      <div>
+        <Button disabled={!username}>Start your order</Button>
+      </div>
     </form>
   );
 }
