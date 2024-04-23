@@ -21,7 +21,9 @@ function CreateUser() {
         className="input mb-4 w-72"
       />
       <div>
-        <Button disabled={!username}>Start your order</Button>
+        <Button type="primary" disabled={!username}>
+          Start your order
+        </Button>
       </div>
     </form>
   );

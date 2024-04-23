@@ -1,17 +1,51 @@
 import { Link } from "react-router-dom";
 import LinkButton from "../../ui/LinkButton";
 import Button from "../../ui/Button";
+import CartItem from "./CartItem";
 
+const initialCart = [
+  {
+    id: 12,
+    name: "Palov",
+    quantity: 2,
+    unitPrice: 14,
+    totalPrice: 28,
+  },
+  {
+    id: 6,
+    name: "Kebab",
+    quantity: 4,
+    unitPrice: 8,
+    totalPrice: 32,
+  },
+  {
+    id: 11,
+    name: "Somsa",
+    quantity: 4,
+    unitPrice: 5,
+    totalPrice: 20,
+  },
+];
 function Cart() {
+  const cart = initialCart;
+
   return (
-    <div>
+    <div className="px-4 py-3">
       <LinkButton to="/menu">&#8592; Back to menu</LinkButton>
 
-      <h2>Your cart</h2>
+      <h2 className="mt-7 text-xl font-semibold">Your cart</h2>
 
-      <div>
-        <Button to="/order/new">Order food</Button>
-        <button>Clear cart</button>
+      <ul className="mt-3 divide-y divide-stone-200 border-b">
+        {cart.map((item) => (
+          <CartItem key={item.id} item={item} />
+        ))}
+      </ul>
+
+      <div className="mt-6 space-x-2">
+        <Button type="primary" to="/order/new">
+          Order food
+        </Button>
+        <Button type="secondary">Clear cart</Button>
       </div>
     </div>
   );

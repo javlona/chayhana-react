@@ -66,7 +66,7 @@ function CreateOrder() {
           {formErrors?.phone && <p>{formErrors.phone}</p>}
           <div>
             <input type="hidden" name="cart" value={cart} />
-            <Button disabled={isSubmitting}>
+            <Button type="primary" disabled={isSubmitting}>
               {isSubmitting ? "Ordering..." : "Order now"}
             </Button>
           </div>
