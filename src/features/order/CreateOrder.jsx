@@ -41,35 +41,44 @@ function CreateOrder() {
   const cart = JSON.stringify(dummyCart);
 
   return (
-    <div className="my-10">
-      <h2>Are you ready to order?</h2>
+    <div className="px-4 py-6">
+      <h2 className="mb-6 text-xl font-semibold">Are you ready to order?</h2>
 
-      <Form method="post">
-        <div className="flex flex-col">
-          <label htmlFor="name">First name</label>
+      <Form method="post" className="flex flex-col gap-4">
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+          <label className="sm:basis-40" htmlFor="name">
+            Full name
+          </label>
           <input
-            className="input"
+            className="input grow"
             type="text"
             id="name"
             name="customer"
             required
           />
-
-          <label htmlFor="phone">Phone number</label>
+        </div>
+        <div className="relative flex flex-col gap-2 sm:flex-row sm:items-center">
+          <label className="sm:basis-40" htmlFor="phone">
+            Phone number
+          </label>
           <input
-            className="input"
+            className="input  grow"
             type="tel"
             id="phone"
             name="phone"
             required
           />
-          {formErrors?.phone && <p>{formErrors.phone}</p>}
-          <div>
-            <input type="hidden" name="cart" value={cart} />
-            <Button type="primary" disabled={isSubmitting}>
-              {isSubmitting ? "Ordering..." : "Order now"}
-            </Button>
-          </div>
+          {formErrors?.phone && (
+            <p className="absolute right-2 top-9 rounded-md bg-red-100 p-1 text-sm text-red-700 sm:top-2">
+              {formErrors.phone}
+            </p>
+          )}
+        </div>
+        <div className="mt-8">
+          <input type="hidden" name="cart" value={cart} />
+          <Button type="primary" disabled={isSubmitting}>
+            {isSubmitting ? "Ordering..." : "Order now"}
+          </Button>
         </div>
       </Form>
     </div>
