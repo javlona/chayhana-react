@@ -42,11 +42,14 @@ function CreateOrder() {
 
   return (
     <div className="px-4 py-6">
-      <h2 className="mb-6 text-xl font-semibold">Are you ready to order?</h2>
+      <h2 className="mb-6 text-xl font-bold">Are you ready to order?</h2>
 
       <Form method="post" className="flex flex-col gap-4">
         <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
-          <label className="sm:basis-40" htmlFor="name">
+          <label
+            className="font-semibold tracking-wide sm:basis-40"
+            htmlFor="name"
+          >
             Full name
           </label>
           <input
@@ -58,7 +61,10 @@ function CreateOrder() {
           />
         </div>
         <div className="relative flex flex-col gap-2 sm:flex-row sm:items-center">
-          <label className="sm:basis-40" htmlFor="phone">
+          <label
+            className="font-semibold tracking-wide sm:basis-40"
+            htmlFor="phone"
+          >
             Phone number
           </label>
           <input

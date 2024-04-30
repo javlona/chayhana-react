@@ -4,8 +4,8 @@ import Username from "../features/user/Username";
 
 function Header() {
   return (
-    <header className="bg-main1 flex items-center justify-between border-b-2 border-blue-200 px-4 py-3 uppercase text-stone-100 sm:px-6">
-      <Link to="/" className="tracking-wide">
+    <header className="pattern flex items-center justify-between border-b-2 border-blue-200 bg-main1 px-4 py-3 uppercase text-stone-100 sm:px-6">
+      <Link to="/" className="font-bold tracking-wide">
         Chayhana
       </Link>
       <SearchOrder />
