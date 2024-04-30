@@ -1,6 +1,7 @@
 import { Form, redirect, useActionData, useNavigation } from "react-router-dom";
 import { createOrder } from "../../services/apiFetch";
 import Button from "../../ui/Button";
+import { useSelector } from "react-redux";
 
 const dummyCart = [
   {
@@ -35,6 +36,7 @@ const isValidPhone = (phone) => {
 function CreateOrder() {
   const navigation = useNavigation();
   const isSubmitting = navigation.state === "submitting";
+  const username = useSelector((state) => state.user.userName);
 
   const formErrors = useActionData();
 
@@ -57,6 +59,7 @@ function CreateOrder() {
             type="text"
             id="name"
             name="customer"
+            defaultValue={username}
             required
           />
         </div>
